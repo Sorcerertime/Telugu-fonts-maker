@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telugu Text Editor & Image Maker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&family=Potti+Sreeramulu:wght@400&family=Mallanna&family=Timmana&family=Ramabhadra&family=Mandali&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>తెలుగు టెక్స్ట్ ఎడిటర్</h1>
+            <p class="subtitle">Telugu Text Editor & Image Maker</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Controls -->
+            <aside class="controls-panel">
+                <div class="panel-section">
+                    <h2 class="section-title">📝 Text Input</h2>
+                    <textarea 
+                        id="textInput" 
+                        class="text-input" 
+                        placeholder="తెలుగు టెక్స్ట్ టైప్ చేయండి..."
+                        rows="4"
+                    >స్వాగతం</textarea>
+                </div>
+
+                <!-- Font Selection -->
+                <div class="panel-section">
+                    <h2 class="section-title">🔤 Font Settings</h2>
+                    
+                    <div class="control-group">
+                        <label for="fontFamily">Font Family</label>
+                        <select id="fontFamily" class="select-input">
+                            <optgroup label="Google Fonts">
+                                <option value="'Noto Sans Telugu', sans-serif">Noto Sans Telugu</option>
+                                <option value="'Potti Sreeramulu', serif">Potti Sreeramulu</option>
+                                <option value="'Mallanna', sans-serif">Mallanna</option>
+                                <option value="'Timmana', sans-serif">Timmana</option>
+                                <option value="'Ramabhadra', sans-serif">Ramabhadra</option>
+                                <option value="'Mandali', sans-serif">Mandali</option>
+                            </optgroup>
+                            <optgroup label="Custom Fonts" id="customFontsGroup">
+                                <!-- Custom fonts will be added here -->
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label>Upload Custom Font</label>
+                        <input type="file" id="fontUpload" accept=".ttf,.otf,.woff,.woff2" class="file-input">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="fontSize">Font Size: <span id="fontSizeValue">72</span>px</label>
+                        <input type="range" id="fontSize" min="20" max="300" value="72" class="slider">
+                    </div>
+                </div>
+
+                <!-- Text Styling -->
+                <div class="panel-section">
+                    <h2 class="section-title">🎨 Text Styling</h2>
+                    
+                    <div class="control-group">
+                        <label for="textColor">Text Color</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="textColor" value="#ffffff" class="color-input">
+                            <span class="color-value">#ffffff</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="letterSpacing">Letter Spacing: <span id="letterSpacingValue">0</span>px</label>
+                        <input type="range" id="letterSpacing" min="-10" max="50" value="0" class="slider">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="lineSpacing">Line Spacing: <span id="lineSpacingValue">1.5</span></label>
+                        <input type="range" id="lineSpacing" min="0.5" max="3" step="0.1" value="1.5" class="slider">
+                    </div>
+
+                    <div class="control-group">
+                        <label>Text Effects</label>
+                        <div class="button-group">
+                            <button id="boldBtn" class="effect-btn" data-active="false">
+                                <strong>B</strong>
+                            </button>
+                            <button id="italicBtn" class="effect-btn" data-active="false">
+                                <em>I</em>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Shadow/Outline -->
+                <div class="panel-section">
+                    <h2 class="section-title">✨ Effects</h2>
+                    
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="shadowEnabled" class="checkbox">
+                            Enable Text Shadow
+                        </label>
+                    </div>
+
+                    <div class="control-group" id="shadowControls" style="display: none;">
+                        <label for="shadowColor">Shadow Color</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="shadowColor" value="#000000" class="color-input">
+                            <span class="color-value-shadow">#000000</span>
+                        </div>
+                        
+                        <label for="shadowBlur">Shadow Blur: <span id="shadowBlurValue">10</span>px</label>
+                        <input type="range" id="shadowBlur" min="0" max="50" value="10" class="slider">
+                    </div>
+
+                    <div class="control-group">
+                        <label>
+                            <input type="checkbox" id="strokeEnabled" class="checkbox">
+                            Enable Text Outline
+                        </label>
+                    </div>
+
+                    <div class="control-group" id="strokeControls" style="display: none;">
+                        <label for="strokeColor">Outline Color</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="strokeColor" value="#000000" class="color-input">
+                            <span class="color-value-stroke">#000000</span>
+                        </div>
+                        
+                        <label for="strokeWidth">Outline Width: <span id="strokeWidthValue">2</span>px</label>
+                        <input type="range" id="strokeWidth" min="1" max="20" value="2" class="slider">
+                    </div>
+                </div>
+
+                <!-- Background -->
+                <div class="panel-section">
+                    <h2 class="section-title">🖼️ Background</h2>
+                    
+                    <div class="control-group">
+                        <label>Upload Background Image</label>
+                        <input type="file" id="bgImageUpload" accept="image/*" class="file-input">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="bgColor">Background Color</label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="bgColor" value="#1a1a2e" class="color-input">
+                            <span class="color-value-bg">#1a1a2e</span>
+                        </div>
+                    </div>
+
+                    <button id="clearBgBtn" class="btn btn-secondary">Clear Background Image</button>
+                </div>
+
+                <!-- Text Alignment -->
+                <div class="panel-section">
+                    <h2 class="section-title">📐 Alignment</h2>
+                    <div class="button-group">
+                        <button id="alignLeft" class="align-btn" data-align="left">Left</button>
+                        <button id="alignCenter" class="align-btn active" data-align="center">Center</button>
+                        <button id="alignRight" class="align-btn" data-align="right">Right</button>
+                    </div>
+                </div>
+
+                <!-- Export -->
+                <div class="panel-section">
+                    <h2 class="section-title">💾 Export</h2>
+                    
+                    <div class="control-group">
+                        <label for="resolution">Resolution</label>
+                        <select id="resolution" class="select-input">
+                            <option value="1080">Full HD (1920x1080)</option>
+                            <option value="4k">4K Ultra HD (3840x2160)</option>
+                        </select>
+                    </div>
+
+                    <button id="downloadBtn" class="btn btn-primary">Download PNG</button>
+                </div>
+            </aside>
+
+            <!-- Right Panel - Canvas Preview -->
+            <main class="canvas-panel">
+                <div class="canvas-wrapper">
+                    <div class="canvas-info">
+                        <span id="canvasResolution">1920 × 1080</span>
+                        <span class="drag-hint">💡 Drag text to reposition</span>
+                    </div>
+                    <div class="canvas-container" id="canvasContainer">
+                        <canvas id="previewCanvas" width="1920" height="1080"></canvas>
+                        <div id="draggableText" class="draggable-text">స్వాగతం</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
